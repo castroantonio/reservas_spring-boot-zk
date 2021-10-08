@@ -1,0 +1,26 @@
+<zk xmlns:n="native">
+	<window title="Java com Spring Boot e ZK" border="normal"
+		viewModel="@id('vm') @init('com.castroantonio.reservas.controller.DetalharViewModel')">
+        <n:h1>Reservas</n:h1>
+        <n:h3>Java com Spring Boot e ZK</n:h3>
+		<div>Detalhes da reserva:</div>
+		<n:p>
+		   Cliente
+		   <label value="@load(vm.reserva.cliente.nome)" />
+		</n:p>
+        <n:p>
+           Quarto
+           <label value="@load(vm.reserva.quarto.numero)" />
+           - 
+           <label value="@load(vm.reserva.quarto.descricao)" />
+           - Valor: R$ <label value="@load(vm.reserva.quarto.preco) @converter('formatedNumber', format='###,##0.00')" /> </n:p>
+		<n:p>
+		   Período de
+		   <label value="@load(vm.reserva.inicio) @converter('formatedDate', format='dd/MM/yyyy')" />
+		   até
+		   <label value="@load(vm.reserva.fim) @converter('formatedDate', format='dd/MM/yyyy')" />
+		</n:p>
+		<button label="Voltar" onClick="@command('voltar')" />
+		<button label="Remover" onClick="@command('remover')" />
+	</window>
+</zk>

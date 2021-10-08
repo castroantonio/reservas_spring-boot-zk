@@ -1,0 +1,16 @@
+<zk xmlns:n="native">
+    <window title="Java com Spring Boot e ZK" border="normal">
+        <n:h1>Reservas</n:h1>
+        <n:h3>Java com Spring Boot e ZK</n:h3>
+        <n:p>Nesta página o uso de namespace (&lt; zk xmlns:n="native" &gt;) permite tags nativas HTML: &lt; n:h1 &gt; &lt; /n:h1 &gt;</n:p>
+        <n:p></n:p>
+        <n:p>Esta é uma página estática, definida como a principal no arquivo *src/main/resources/application.properties*, através da tag: *zk.homepage=principal*</n:p>
+        <n:p>O link para uma outra página deve começar com: ~./</n:p>
+        <n:p>Isso cria uma URL diferente! O link usado na linha abaixo, foi criado assim:</n:p>
+        &lt; a label="aqui" href="~./reservar.zul" / &gt;
+        <n:p></n:p>
+        <n:p>Faça uma nova reserva clicando <a label="aqui" href="~./reservar.zul" />.</n:p>
+        <n:p>Gerencie as reservar existentes clicando <a label="aqui" href="~./gerenciar.zul" />.</n:p>
+        Você está usando ZK na versão <label value="${session.webApp.version}"/>
+    </window>
+</zk>

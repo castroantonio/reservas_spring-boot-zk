@@ -1,0 +1,36 @@
+<zk xmlns:n="native">
+	<window title="Java com Spring Boot e ZK" border="normal"
+		viewModel="@id('vm') @init('com.castroantonio.reservas.controller.ReservarViewModel')">
+        <n:h1>Reservas</n:h1>
+        <n:h3>Java com Spring Boot e ZK</n:h3>
+        <n:p>Nesta página usa-se um View Model através da tag:
+        &lt; window viewModel="@id('vm') @init('com.castroantonio.reservas.controller.ReservarViewModel')" &gt;
+        </n:p>
+        
+		<div>Informe os dados para procurar por acomodações disponíveis:</div>
+		<div>
+			<label value="Data início:" />
+			<datebox value="@bind(vm.inicio)" format="dd/MM/yyyy" constraint="no past, no today" onChange="@command('buscar')" />
+		</div>
+		<div>
+			<label value="Data fim:" />
+			<datebox value="@bind(vm.fim)" format="dd/MM/yyyy" constraint="no past, no today" onChange="@command('buscar')"/>
+		</div>
+		<grid model="@load(vm.quartosDisponiveis)" emptyMessage="Não há quartos disponíves no período informado.">
+			<columns>
+				<column hflex="1">#</column>
+				<column hflex="8">Descrição</column>
+				<column hflex="3">Preço</column>
+				<column hflex="3">Selecione</column>
+			</columns>
+			<template name="model">
+				<row>
+					<label value="@load(each.numero)" />
+					<label value="@load(each.descricao)" />
+					<label value="@load(each.preco)" />
+					<button label="Selecionar" onClick="@command('selecionar', quarto=each)" />
+				</row>
+			</template>
+		</grid>
+	</window>
+</zk>

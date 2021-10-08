@@ -1,0 +1,28 @@
+<zk xmlns:n="native">
+	<window title="Java com Spring Boot e ZK" border="normal"
+	    mode="modal" closable="true" onCancel="self.detach();"
+		viewModel="@id('vm') @init('com.castroantonio.reservas.controller.ConfirmarViewModel')">
+        <n:h1>Reservas</n:h1>
+        <n:h3>Java com Spring Boot e ZK</n:h3>
+        <n:p></n:p>
+        <n:p>Leia atentamente e confirme os dados</n:p>
+        <n:p>
+           Quarto
+           <label value="@load(vm.quarto.numero)" />
+           - 
+           <label value="@load(vm.quarto.descricao)" />
+           - Valor: R$ <label value="@load(vm.quarto.preco) @converter('formatedNumber', format='###,##0.00')" /> </n:p>
+		<n:p>
+		   Período de
+		   <label value="@load(vm.inicio) @converter('formatedDate', format='dd/MM/yyyy')" />
+		   até
+		   <label value="@load(vm.fim) @converter('formatedDate', format='dd/MM/yyyy')" />
+		</n:p>
+		<n:p>
+		   Eu,
+		   <textbox value="@bind(vm.nome)" placeholder="Seu nome..." tabindex="1" />
+		   conferi as informações e aceito os termos de uso.
+		</n:p>
+		<button label="Confirmar" onClick="@command('confirmar')" />
+	</window>
+</zk>

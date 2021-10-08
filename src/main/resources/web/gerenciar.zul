@@ -1,0 +1,31 @@
+<zk xmlns:n="native">
+	<window title="Java com Spring Boot e ZK" border="normal"
+		viewModel="@id('vm') @init('com.castroantonio.reservas.controller.GerenciarViewModel')">
+        <n:h1>Reservas</n:h1>
+        <n:h3>Java com Spring Boot e ZK</n:h3>
+        
+		<div>Gerencie as reservas existentes:</div>
+		<grid model="@load(vm.reservas)" emptyMessage="Não há reservas.">
+			<columns>
+				<column hflex="8">Cliente</column>
+				<column hflex="1">Quarto</column>
+				<column hflex="3">Início</column>
+				<column hflex="3">Fim</column>
+				<column  hflex="3">Ações</column>
+			</columns>
+			<template name="model">
+				<row>
+				    <label value="@load(each.cliente.nome)" />
+					<label value="@load(each.quarto.numero)" />
+				    <label value="@load(each.inicio) @converter('formatedDate', format='dd/MM/yyyy')" />
+					
+				    <label value="@load(each.fim) @converter('formatedDate', format='dd/MM/yyyy')" />
+				    <hbox>
+				      <button label="Detalhar" onClick="@command('detalhar', reserva=each)" />
+  				      <button label="Remover" onClick="@command('remover', reserva=each)" />
+				    </hbox>
+				</row>
+			</template>
+		</grid>
+	</window>
+</zk>
