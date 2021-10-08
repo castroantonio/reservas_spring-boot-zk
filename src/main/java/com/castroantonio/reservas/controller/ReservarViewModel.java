@@ -12,8 +12,8 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
-import com.castroantonio.reservas.ServicoReserva;
 import com.castroantonio.reservas.model.Quarto;
+import com.castroantonio.reservas.service.ServicoReserva;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class) // permite injeção de dependencia
 public class ReservarViewModel {
