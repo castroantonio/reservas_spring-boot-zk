@@ -87,9 +87,19 @@ De pois de criar cada página *.zul* é necessário criar o referente View Model
 </zk>
 ```
 
-No *View Model* é comum o uso de serviços. As classes referentes a tais serviços devem ser anotadas com *@Service* (uma anotação do Spring). Para fazer injeção de dependência na *View Model* é necessário adicionar a dependência do **ZK Plus Utilities** no *pom.xml*. Conforme o exemplo:
+No *View Model* é comum o uso de serviços. As classes referentes a tais serviços devem ser anotadas com *@Service* (uma anotação do Spring):
 
 ```
+...
+@Service
+public class ClasseA {
+...
+```
+
+Para fazer injeção de dependência na *View Model* é necessário adicionar a dependência do **ZK Plus Utilities** no *pom.xml*. Conforme o exemplo:
+
+```
+...
   <dependencies>
     ...
 	<dependency>
@@ -99,14 +109,36 @@ No *View Model* é comum o uso de serviços. As classes referentes a tais servi�
 	</dependency>
     ...
   <dependencies>
+...
 ```
 
 Com isso não é necessário instanciar o serviço, basta anotá-lo com *@WireVariable*, desta forma:
 
 ```
+...
 	@WireVariable  // faz injeção de dependencia do servico para o View Model
-	private ServicoReserva servicoReserva;  // a classe deve estar anotada com @Service
+	private ClasseA classeA;  // a classe deve estar anotada com @Service
+...
 ```
+
+**IMPORTANTE**: O *ZK* associa o nome do atributo do *@WireVariable* ao nome do serviço, se o atributo tiver nome diferente do da classe não funciona! Quer usar um nome de atributo diferente? Na classe de serviço:
+
+```
+...
+@Service("NOME")
+public class ClasseB {
+...
+```
+
+E para fazer a injeção de dependências:
+
+```
+...
+	@WireVariable  // faz injeção de dependencia do servico para o View Model
+	private ClasseB NOME;  // a classe deve estar anotada com @Service("NOME")
+...
+```
+
 
 Dessa forma temos todo o necessário para o desenvolvimento de um projeto *Java* com *Spring Boot* e *ZK*, o resto é o uso comum das ferramentas. O projeto contido neste repositório tem alguns exemplos dos seguintes tópicos no código fonte do projeto:
 
